@@ -2,7 +2,7 @@ const { Model } = require('sequelize');
 const Sequelize = require('sequelize');
 
 class State extends Model {
-  static init(sequelize){
+  static init(sequelize) {
     super.init(
       {
         state_name: Sequelize.STRING,
@@ -10,7 +10,7 @@ class State extends Model {
       },
       {
         sequelize,
-      }
+      },
     );
   }
 }
