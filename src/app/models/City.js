@@ -6,7 +6,7 @@ class City extends Model {
     super.init(
       {
         city_name: Sequelize.STRING,
-        biome: Sequelize.STRING,
+        biome: Sequelize.ARRAY(Sequelize.TEXT),
         fiscal_module: Sequelize.INTEGER,
         state: Sequelize.INTEGER,
       },

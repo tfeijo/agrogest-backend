@@ -19,6 +19,12 @@ class StateController {
     return res.json(state);
   }
 
+  async showByUf(req, res) {
+    const state = await State.findOne({ where: { uf: req.params.uf } });
+
+    return res.json(state);
+  }
+
   async update(req, res) {
     const stateUpdate = await State.update(req.body, {
       where: {
