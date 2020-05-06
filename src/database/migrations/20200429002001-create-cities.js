@@ -12,7 +12,7 @@ module.exports = {
       allowNull: false,
     },
     biome: {
-      type: Sequelize.STRING,
+      type: Sequelize.ARRAY(Sequelize.STRING),
       allowNull: false,
     },
     fiscal_module: {

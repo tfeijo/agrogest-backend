@@ -10,6 +10,9 @@
     "cors": "^2.8.5",
     "create-react-app": "^3.4.1",
     "express": "^4.17.1",
+    "fs": "^0.0.1-security",
+    "node-fetch": "^2.6.0",
+    "node-localstorage": "^2.1.6",
     "pg": "^8.0.3",
     "pg-hstore": "^2.3.3",
     "sequelize": "^5.21.7"

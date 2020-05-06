@@ -15,8 +15,9 @@ class CityController {
 
   async show(req, res) {
     const city = await City.findByPk(req.params.id);
+    console.log(typeof city.biome);
 
-    return res.json(city);
+    return city === null ? res.send('There is no city with this id') : res.json(city);
   }
 
   async update(req, res) {

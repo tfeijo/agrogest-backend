@@ -1,7 +1,9 @@
 import Sequelize from 'sequelize';
-import databaseConfig from '../config/database';
+
 import City from '../app/models/City';
 import State from '../app/models/State';
+
+import databaseConfig from '../config/database';
 
 const models = [City, State];
 
@@ -12,6 +14,7 @@ class Database {
 
   init() {
     this.connection = new Sequelize(databaseConfig);
+
     models.map((model) => model.init(this.connection));
   }
 }
