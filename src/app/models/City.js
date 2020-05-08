@@ -1,19 +1,21 @@
-const { Model } = require('sequelize');
-const Sequelize = require('sequelize');
+const { Model, DataTypes } = require('sequelize');
 
 class City extends Model {
   static init(sequelize) {
     super.init(
       {
-        city_name: Sequelize.STRING,
-        biome: Sequelize.ARRAY(Sequelize.STRING),
-        fiscal_module: Sequelize.INTEGER,
-        state: Sequelize.INTEGER,
+        name: DataTypes.STRING,
+        fiscal_module: DataTypes.INTEGER,
       },
       {
         sequelize,
       },
     );
+  }
+
+  static associate(models) {
+    this.belongsTo(models.State, { foreignKey: 'state_id', as: 'state' });
+    this.belongsToMany(models.Biome, { foreignKey: 'city_id', through: 'city_biomes', as: 'biomes' });
   }
 }
 

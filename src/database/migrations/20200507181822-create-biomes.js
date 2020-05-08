@@ -1,17 +1,13 @@
 
 module.exports = {
-  up: (queryInterface, Sequelize) => queryInterface.createTable('states', {
+  up: (queryInterface, Sequelize) => queryInterface.createTable('biomes', {
     id: {
       type: Sequelize.INTEGER,
       allowNull: false,
       autoIncrement: true,
       primaryKey: true,
     },
-    state_name: {
-      type: Sequelize.STRING,
-      allowNull: false,
-    },
-    uf: {
+    name: {
       type: Sequelize.STRING,
       allowNull: false,
     },
@@ -25,5 +21,5 @@ module.exports = {
     },
   }),
 
-  down: (queryInterface) => queryInterface.dropTable('states'),
+  down: (queryInterface) => queryInterface.dropTable('biomes'),
 };

@@ -7,25 +7,22 @@ module.exports = {
       autoIncrement: true,
       primaryKey: true,
     },
-    city_name: {
+    name: {
       type: Sequelize.STRING,
-      allowNull: false,
-    },
-    biome: {
-      type: Sequelize.ARRAY(Sequelize.STRING),
       allowNull: false,
     },
     fiscal_module: {
       type: Sequelize.INTEGER,
       allowNull: false,
     },
-    state: {
+    state_id: {
       type: Sequelize.INTEGER,
       allowNull: false,
       references: {
         model: 'states',
         key: 'id',
       },
+      onUpdate: 'CASCADE',
     },
     created_at: {
       type: Sequelize.DATE,
@@ -37,5 +34,5 @@ module.exports = {
     },
   }),
 
-  down: (queryInterface, Sequelize) => queryInterface.dropTable('cities'),
+  down: (queryInterface) => queryInterface.dropTable('cities'),
 };

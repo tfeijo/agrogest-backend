@@ -1,11 +1,10 @@
 const { Model, DataTypes } = require('sequelize');
 
-class State extends Model {
+class Biome extends Model {
   static init(sequelize) {
     super.init(
       {
-        state_name: DataTypes.STRING,
-        uf: DataTypes.STRING,
+        name: DataTypes.STRING,
       },
       {
         sequelize,
@@ -14,8 +13,8 @@ class State extends Model {
   }
 
   static associate(models) {
-    this.hasMany(models.City, { foreignKey: 'state_id', as: 'cities' });
+    this.belongsToMany(models.City, { foreignKey: 'biome_id', through: 'city_biomes', as: 'cities' });
   }
 }
 
-module.exports = State;
+module.exports = Biome;
