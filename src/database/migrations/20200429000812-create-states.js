@@ -7,7 +7,7 @@ module.exports = {
       autoIncrement: true,
       primaryKey: true,
     },
-    state_name: {
+    name: {
       type: Sequelize.STRING,
       allowNull: false,
     },

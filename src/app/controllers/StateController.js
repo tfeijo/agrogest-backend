@@ -8,7 +8,12 @@ class StateController {
   }
 
   async index(req, res) {
-    const state = await State.findAll();
+    const state = await State.findAll({
+      attributes: ['id', 'name', 'uf'],
+      order: [
+        ['name', 'ASC'],
+      ],
+    });
 
     return res.json(state);
   }

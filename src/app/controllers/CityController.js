@@ -8,7 +8,23 @@ class CityController {
 
   async index(req, res) {
     const city = await City.findAll({
-      include: { association: 'biomes' },
+      attributes: ['id', 'name', 'fiscal_module'],
+      order: [
+        ['name', 'ASC'],
+      ],
+      include: [
+        {
+          association: 'state',
+          attributes: ['id', 'name'],
+        },
+        {
+          association: 'biomes',
+          attributes: ['id', 'name'],
+          through: {
+            attributes: [],
+          },
+        },
+      ],
     });
 
     return res.json(city);
@@ -16,19 +32,66 @@ class CityController {
 
   async show(req, res) {
     const city = await City.findByPk(req.params.id, {
-      include: { association: 'state' },
+      attributes: ['id', 'name', 'fiscal_module'],
+      include: [
+        {
+          association: 'state',
+          attributes: ['id', 'name'],
+        },
+        {
+          association: 'biomes',
+          through: {
+            attributes: [],
+          },
+          attributes: ['id', 'name'],
+        },
+      ],
     });
 
     return res.json(city);
   }
 
   async indexByUf(req, res) {
-    const { stateid } = req.params;
+    const { state_id } = req.params;
     const cities = await City.findAll({
-      where: { state: stateid },
-      include: { association: 'state' },
+      where: { state_id },
+      attributes: ['id', 'name'],
+      order: [
+        ['name', 'ASC'],
+      ],
+      include: [
+        {
+          association: 'biomes',
+          through: {
+            attributes: [],
+          },
+          attributes: [],
+        },
+      ],
     });
 
+    return res.json(cities);
+  }
+
+  async indexByBiome(req, res) {
+    const { biome_id } = req.params;
+
+    const cities = await City.findAll({
+      attributes: ['id', 'name'],
+      order: [
+        ['name', 'ASC'],
+      ],
+      include: [
+        {
+          where: { id: biome_id },
+          association: 'biomes',
+          through: {
+            attributes: [],
+          },
+          attributes: [],
+        },
+      ],
+    });
     return res.json(cities);
   }
 

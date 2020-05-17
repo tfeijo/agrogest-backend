@@ -7,7 +7,6 @@ class BiomeController {
     const { name } = req.body;
 
     const city = await City.findByPk(city_id);
-
     const [biome] = await Biome.findOrCreate({
       where: { name },
     });
@@ -19,15 +18,19 @@ class BiomeController {
 
   async index(req, res) {
     const biome = await Biome.findAll({
-      include: { association: 'cities' },
+      attributes: ['id', 'name'],
+      order: [
+        ['name', 'ASC'],
+      ],
     });
-
 
     return res.json(biome);
   }
 
   async show(req, res) {
-    const biome = await Biome.findByPk(req.params.id);
+    const biome = await Biome.findByPk(req.params.id, {
+      attributes: ['id', 'name'],
+    });
 
     return res.json(biome);
   }
@@ -44,7 +47,6 @@ class BiomeController {
 
   async delete(req, res) {
     await Biome.destroy({ where: { id: req.params.id } });
-
     return res.send();
   }
 }

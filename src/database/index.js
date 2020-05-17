@@ -3,10 +3,12 @@ import Sequelize from 'sequelize';
 import City from '../app/models/City';
 import State from '../app/models/State';
 import Biome from '../app/models/Biome';
+import Land from '../app/models/Land';
+import SizeLand from '../app/models/SizeLand';
 
 import databaseConfig from '../config/database';
 
-const models = [City, State, Biome];
+const models = [City, State, Biome, Land, SizeLand];
 
 class Database {
   constructor() {
