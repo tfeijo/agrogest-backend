@@ -28,7 +28,7 @@ class LandController {
       include: [
         {
           association: 'city',
-          attributes: ['id', 'name'],
+          attributes: ['id', 'name', 'fiscal_module'],
           include: [
             {
               association: 'state',
