@@ -17,6 +17,12 @@ class Land extends Model {
   static associate(models) {
     this.belongsTo(models.SizeLand, { foreignKey: 'size_id', as: 'size' });
     this.belongsTo(models.City, { foreignKey: 'city_id', as: 'city' });
+    this.belongsToMany(models.Parameter,
+      {
+        foreignKey: 'parameter_id',
+        through: 'farm_parameters',
+        as: 'parameters',
+      });
   }
 }
 

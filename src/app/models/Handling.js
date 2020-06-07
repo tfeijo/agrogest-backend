@@ -1,6 +1,6 @@
 const { Model, DataTypes } = require('sequelize');
 
-class Biome extends Model {
+class Handling extends Model {
   static init(sequelize) {
     super.init(
       {
@@ -8,17 +8,14 @@ class Biome extends Model {
       },
       {
         sequelize,
+        tableName: 'prod_handling',
       },
     );
   }
 
   static associate(models) {
-    this.belongsToMany(models.City, {
-      foreignKey: 'biome_id',
-      through: 'city_biomes',
-      as: 'cities',
-    });
+    this.belongsTo(models.System, { foreignKey: 'system_id', as: 'systems' });
   }
 }
 
-module.exports = Biome;
+module.exports = Handling;

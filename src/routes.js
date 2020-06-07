@@ -3,6 +3,7 @@ import CityController from './app/controllers/CityController';
 import StateController from './app/controllers/StateController';
 import BiomeController from './app/controllers/BiomeController';
 import LandController from './app/controllers/LandController';
+import ActivityController from './app/controllers/ActivityController';
 
 const routes = new Router();
 const fs = require('fs');
@@ -36,5 +37,7 @@ routes.get('/biomes', BiomeController.index);
 routes.get('/lands', LandController.index);
 routes.get('/lands/:id', LandController.show);
 routes.post('/lands', LandController.store);
+
+routes.post('/activity', ActivityController.store);
 
 export default routes;

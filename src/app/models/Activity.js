@@ -1,23 +1,25 @@
 const { Model, DataTypes } = require('sequelize');
 
-class State extends Model {
+class Activity extends Model {
   static init(sequelize) {
     super.init(
       {
         name: DataTypes.STRING,
-        uf: DataTypes.STRING,
       },
       {
         sequelize,
+        tableName: 'prod_activities',
       },
     );
   }
 
   static associate(models) {
-    this.hasMany(models.City, { foreignKey: 'state_id', as: 'cities' });
+    this.hasMany(models.System,
+      { foreignKey: 'activity_id', as: 'systems' });
+
     this.hasMany(models.Parameter,
-      { foreignKey: 'state_id', as: 'parameters' });
+      { foreignKey: 'activity_id', as: 'parameters' });
   }
 }
 
-module.exports = State;
+module.exports = Activity;
