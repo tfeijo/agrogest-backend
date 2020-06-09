@@ -10,15 +10,6 @@ module.exports = {
     name: {
       type: Sequelize.STRING,
     },
-    system_id: {
-      type: Sequelize.INTEGER,
-      allowNull: false,
-      references: {
-        model: 'prod_activities',
-        key: 'id',
-      },
-      onUpdate: 'CASCADE',
-    },
     created_at: {
       allowNull: false,
       type: Sequelize.DATE,

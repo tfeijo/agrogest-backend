@@ -1,6 +1,6 @@
 const { Model, DataTypes } = require('sequelize');
 
-class PolluitionFactor extends Model {
+class Factor extends Model {
   static init(sequelize) {
     super.init(
       {
@@ -8,7 +8,7 @@ class PolluitionFactor extends Model {
       },
       {
         sequelize,
-        tableName: 'pulluition_factors',
+        tableName: 'prod_factors',
       },
     );
   }
@@ -17,10 +17,10 @@ class PolluitionFactor extends Model {
     this.belongsToMany(models.Parameter,
       {
         foreignKey: 'factor_id',
-        through: 'parameter_factors',
+        through: 'prod_parameter_factors',
         as: 'parameters',
       });
   }
 }
 
-module.exports = PolluitionFactor;
+module.exports = Factor;

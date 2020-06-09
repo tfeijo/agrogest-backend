@@ -10,12 +10,11 @@ class Parameter extends Model {
         large: DataTypes.INTEGER,
         exceptional: DataTypes.INTEGER,
         state_id: DataTypes.INTEGER,
-        factor_id: DataTypes.INTEGER,
         activity_id: DataTypes.INTEGER,
       },
       {
         sequelize,
-        tableName: 'prodsystem_parameters',
+        tableName: 'prod_parameters',
       },
     );
   }
@@ -25,23 +24,23 @@ class Parameter extends Model {
       { foreignKey: 'state_id', as: 'state' });
 
     this.belongsTo(models.Activity,
-      { foreignKey: 'activity_id', as: 'activitiy' });
+      { foreignKey: 'activity_id', as: 'activity' });
 
     this.belongsTo(models.System,
-      { foreignKey: 'system_id', as: 'systems' });
+      { foreignKey: 'system_id', as: 'system' });
 
     this.belongsTo(models.Measurement,
       { foreignKey: 'measurement_id', as: 'measurement' });
 
-    this.belongsToMany(models.PolluitionFactor,
+    this.belongsToMany(models.Factor,
       {
         foreignKey: 'parameter_id',
-        through: 'parameter_factors',
+        through: 'prod_parameter_factors',
         as: 'factors',
       });
 
-    this.belongsToMany(models.Land,
-      { foreignKey: 'land_id', through: 'land_parameters', as: 'lands' });
+    this.belongsToMany(models.Farm,
+      { foreignKey: 'land_id', through: 'land_parameters', as: 'farms' });
   }
 }
 

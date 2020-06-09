@@ -14,7 +14,12 @@ class Handling extends Model {
   }
 
   static associate(models) {
-    this.belongsTo(models.System, { foreignKey: 'system_id', as: 'systems' });
+    this.belongsToMany(models.System,
+      {
+        foreignKey: 'handling_id',
+        through: 'prod_system_handling',
+        as: 'systems',
+      });
   }
 }
 

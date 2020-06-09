@@ -1,17 +1,17 @@
 
 module.exports = {
-  up: (queryInterface, Sequelize) => queryInterface.createTable('land_parameters', {
+  up: (queryInterface, Sequelize) => queryInterface.createTable('prod_parameter_factors', {
     id: {
       type: Sequelize.INTEGER,
       allowNull: false,
       autoIncrement: true,
       primaryKey: true,
     },
-    land_id: {
+    factor_id: {
       type: Sequelize.INTEGER,
       allowNull: false,
       references: {
-        model: 'lands',
+        model: 'prod_factors',
         key: 'id',
       },
       onUpdate: 'CASCADE',
@@ -37,5 +37,5 @@ module.exports = {
     },
   }),
 
-  down: (queryInterface) => queryInterface.dropTable('land_parameters'),
+  down: (queryInterface) => queryInterface.dropTable('prod_parameter_factors'),
 };

@@ -14,23 +14,30 @@ class System extends Model {
   }
 
   static associate(models) {
-    this.hasMany(models.Measurement, {
-      foreignKey: 'system_id',
-      as: 'measurements',
-    });
-    this.belongsTo(models.Activity, {
-      foreignKey: 'activity_id',
-      as: 'activity',
-    });
+    this.belongsToMany(models.Measurement,
+      {
+        foreignKey: 'system_id',
+        through: 'prod_system_measurements',
+        as: 'measurements',
+      });
+
+    this.belongsToMany(models.Activity,
+      {
+        foreignKey: 'system_id',
+        through: 'prod_activity_systems',
+        as: 'activities',
+      });
+
     this.hasMany(models.Parameter,
       {
         foreignKey: 'system_id',
         as: 'parameters',
       });
-    this.hasMany(models.Handling,
+    this.belongsToMany(models.Handling,
       {
         foreignKey: 'system_id',
-        as: 'handlings',
+        through: 'prod_system_handling',
+        as: 'handling',
       });
   }
 }

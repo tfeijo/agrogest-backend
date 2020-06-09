@@ -14,11 +14,15 @@ class Activity extends Model {
   }
 
   static associate(models) {
-    this.hasMany(models.System,
-      { foreignKey: 'activity_id', as: 'systems' });
-
     this.hasMany(models.Parameter,
       { foreignKey: 'activity_id', as: 'parameters' });
+
+    this.belongsToMany(models.System,
+      {
+        foreignKey: 'activity_id',
+        through: 'prod_activity_systems',
+        as: 'systems',
+      });
   }
 }
 

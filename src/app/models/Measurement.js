@@ -14,7 +14,12 @@ class Measurement extends Model {
   }
 
   static associate(models) {
-    this.belongsTo(models.System, { foreignKey: 'system_id', as: 'systems' });
+    this.belongsToMany(models.System,
+      {
+        foreignKey: 'measurement_id',
+        through: 'prod_system_measurements',
+        as: 'systems',
+      });
     this.hasMany(models.Parameter,
       { foreignKey: 'measurement_id', as: 'parameters' });
   }

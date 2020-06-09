@@ -19,6 +19,25 @@
 **Farm**
 - `/lands (GET,POST)`
 - `/lands/<land-identifier> (GET)`
+
+**Production System**
+- `/production/activities (GET, POST)`
+
+- `/production/systems (GET)`
+- `/production/activities/<act-identifier>/system (POST)`
+
+- `/production/measurements (GET)`
+- `/production/systems/<sys-identifier>/measurement (POST)`
+
+- `/production/handling (GET)`
+- `/production/systems/<sys-identifier>/handling (POST)`
+
+- `/production/factor (POST, GET)`
+
+- `/production/parameters (GET)`
+- `/production/factor (POST, GET)`
+
+
 ##
 
 ## List all cities

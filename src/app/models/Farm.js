@@ -1,6 +1,6 @@
 const { Model, DataTypes } = require('sequelize');
 
-class Land extends Model {
+class Farm extends Model {
   static init(sequelize) {
     super.init(
       {
@@ -10,12 +10,13 @@ class Land extends Model {
       },
       {
         sequelize,
+        tableName: 'lands',
       },
     );
   }
 
   static associate(models) {
-    this.belongsTo(models.SizeLand, { foreignKey: 'size_id', as: 'size' });
+    this.belongsTo(models.SizeFarm, { foreignKey: 'size_id', as: 'size' });
     this.belongsTo(models.City, { foreignKey: 'city_id', as: 'city' });
     this.belongsToMany(models.Parameter,
       {
@@ -26,4 +27,4 @@ class Land extends Model {
   }
 }
 
-module.exports = Land;
+module.exports = Farm;

@@ -1,41 +1,40 @@
 
 module.exports = {
-  up: (queryInterface, Sequelize) => queryInterface.createTable('parameter_factors', {
+  up: (queryInterface, Sequelize) => queryInterface.createTable('prod_system_measurements', {
     id: {
-      type: Sequelize.INTEGER,
       allowNull: false,
       autoIncrement: true,
       primaryKey: true,
+      type: Sequelize.INTEGER,
     },
-    factor_id: {
+    measurement_id: {
       type: Sequelize.INTEGER,
       allowNull: false,
       references: {
-        model: 'polluition_factors',
+        model: 'prod_measurements',
         key: 'id',
       },
       onUpdate: 'CASCADE',
       onDelete: 'CASCADE',
     },
-    parameter_id: {
+    system_id: {
       type: Sequelize.INTEGER,
       allowNull: false,
       references: {
-        model: 'prodsystem_parameters',
+        model: 'prod_systems',
         key: 'id',
       },
       onUpdate: 'CASCADE',
       onDelete: 'CASCADE',
     },
     created_at: {
-      type: Sequelize.DATE,
       allowNull: false,
+      type: Sequelize.DATE,
     },
     updated_at: {
-      type: Sequelize.DATE,
       allowNull: false,
+      type: Sequelize.DATE,
     },
   }),
-
-  down: (queryInterface) => queryInterface.dropTable('parameter_factors'),
+  down: (queryInterface, Sequelize) => queryInterface.dropTable('prod_system_measurements'),
 };

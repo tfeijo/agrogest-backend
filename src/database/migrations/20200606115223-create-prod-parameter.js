@@ -1,6 +1,6 @@
 
 module.exports = {
-  up: (queryInterface, Sequelize) => queryInterface.createTable('prodsystem_parameters', {
+  up: (queryInterface, Sequelize) => queryInterface.createTable('prod_parameters', {
     id: {
       allowNull: false,
       autoIncrement: true,
@@ -75,5 +75,5 @@ module.exports = {
       type: Sequelize.DATE,
     },
   }),
-  down: (queryInterface) => queryInterface.dropTable('prodsystem_parameters'),
+  down: (queryInterface) => queryInterface.dropTable('prod_parameters'),
 };

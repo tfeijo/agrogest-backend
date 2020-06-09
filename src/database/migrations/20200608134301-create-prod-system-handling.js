@@ -1,41 +1,40 @@
 
 module.exports = {
-  up: (queryInterface, Sequelize) => queryInterface.createTable('land_parameters', {
+  up: (queryInterface, Sequelize) => queryInterface.createTable('prod_system_handling', {
     id: {
-      type: Sequelize.INTEGER,
       allowNull: false,
       autoIncrement: true,
       primaryKey: true,
+      type: Sequelize.INTEGER,
     },
-    land_id: {
+    system_id: {
       type: Sequelize.INTEGER,
       allowNull: false,
       references: {
-        model: 'lands',
+        model: 'prod_systems',
         key: 'id',
       },
       onUpdate: 'CASCADE',
       onDelete: 'CASCADE',
     },
-    parameter_id: {
+    handling_id: {
       type: Sequelize.INTEGER,
       allowNull: false,
       references: {
-        model: 'prod_parameters',
+        model: 'prod_handling',
         key: 'id',
       },
       onUpdate: 'CASCADE',
       onDelete: 'CASCADE',
     },
     created_at: {
-      type: Sequelize.DATE,
       allowNull: false,
+      type: Sequelize.DATE,
     },
     updated_at: {
-      type: Sequelize.DATE,
       allowNull: false,
+      type: Sequelize.DATE,
     },
   }),
-
-  down: (queryInterface) => queryInterface.dropTable('land_parameters'),
+  down: (queryInterface, Sequelize) => queryInterface.dropTable('prod_system_handling'),
 };

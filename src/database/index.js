@@ -1,30 +1,30 @@
 import Sequelize from 'sequelize';
 
 import City from '../app/models/City';
-import Land from '../app/models/Land';
+import Farm from '../app/models/Farm';
 import State from '../app/models/State';
 import Biome from '../app/models/Biome';
 import System from '../app/models/System';
-import SizeLand from '../app/models/SizeLand';
+import SizeFarm from '../app/models/SizeFarm';
 import Handling from '../app/models/Handling';
 import Activity from '../app/models/Activity';
 import Parameter from '../app/models/Parameter';
 import Measurement from '../app/models/Measurement';
-import PolluitionFactor from '../app/models/PolluitionFactor';
+import Factor from '../app/models/Factor';
 
 import databaseConfig from '../config/database';
 
 const models = [
   City,
-  Land,
+  Farm,
   State,
   Biome,
   System,
-  SizeLand,
+  SizeFarm,
   Activity,
   Parameter,
   Measurement,
-  PolluitionFactor,
+  Factor,
   Handling,
 ];
 

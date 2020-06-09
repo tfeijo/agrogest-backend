@@ -6,11 +6,21 @@ class ActivityController {
       attributes: ['id', 'name'],
     });
 
-    return activities;
+    return res.json(activities);
   }
 
   async store(req, res) {
-    const activity = await Activity.create(req.body);
+    const { name } = req.body;
+
+
+    const [activity] = await Activity.findOrCreate({
+      where: {
+        name,
+      },
+      defaults: {
+        name,
+      },
+    });
     return res.json(activity);
   }
 }

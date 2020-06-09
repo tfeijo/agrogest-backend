@@ -1,29 +1,29 @@
 import uuid from 'uuid-random';
-import Land from '../models/Land';
+import Farm from '../models/Farm';
 import City from '../models/City';
 
 class LandController {
   async store(req, res) {
-    let land = req.body;
-    const city = await City.findByPk(land.city_id);
-    const size = (land.hectare / city.fiscal_module);
-    if (land.installation_id == null) {
-      land.installation_id = uuid();
+    let farm = req.body;
+    const city = await City.findByPk(farm.city_id);
+    const size = (farm.hectare / city.fiscal_module);
+    if (farm.installation_id == null) {
+      farm.installation_id = uuid();
     }
 
     if (size <= 4.0) {
-      land.size_id = 1;
+      farm.size_id = 1;
     } else if (size <= 15) {
-      land.size_id = 2;
-    } else { land.size_id = 3; }
+      farm.size_id = 2;
+    } else { farm.size_id = 3; }
 
-    land = await Land.create(land);
+    farm = await Farm.create(farm);
 
-    return res.json(land);
+    return res.json(farm);
   }
 
   async index(req, res) {
-    const land = await Land.findAll({
+    const land = await Farm.findAll({
       attributes: ['id', 'installation_id', 'hectare', 'licensing'],
       include: [
         {
@@ -54,7 +54,7 @@ class LandController {
   }
 
   async show(req, res) {
-    const land = await Land.findByPk(req.params.id, {
+    const land = await Farm.findByPk(req.params.id, {
       attributes: ['id', 'installation_id', 'hectare', 'licensing'],
       include: [
         {
@@ -85,7 +85,7 @@ class LandController {
   }
 
   async update(req, res) {
-    const landUpdate = await Land.update(req.body, {
+    const landUpdate = await Farm.update(req.body, {
       where: {
         id: req.params.id,
       },
@@ -95,7 +95,7 @@ class LandController {
   }
 
   async delete(req, res) {
-    await Land.destroy({ where: { id: req.params.id } });
+    await Farm.destroy({ where: { id: req.params.id } });
     return res.send();
   }
 }
